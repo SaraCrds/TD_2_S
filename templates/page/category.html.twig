@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="bigtitle d-flex align-items-center justify-content-center">
+    <div class="w-100">
+    <p class="text-center text-white">Notre Carte</p>
+</div>
+</div>
+
+<div class="nav-cat ">
+    <ul class="bg-dark list-group list-group-horizontal-md d-flex justify-content-center text-center">
+        <a href="{{ path("app_category") }}"><li class="list-group-item bg-transparent text-white border-0">TOUS</li></a>
+        {% for category in categorys %}
+        <a href="{{ path("app_category") }}?id={{ category.id }}"><li class="list-group-item bg-transparent text-white border-0">{{ category.name |upper }}</li></a>
+        {% endfor %}
+    </ul>
+</div>
+<div class="bg-cat-page d-flex justify-content-center">
+<div class="row col-md-8 col-12 pt-5 pb-3 d-flex justify-content-center">
+{% for product in products_all %}
+    <div class="image col-md-3 col-10 p-0 mx-2 mb-4">
+        <a href="plat.php?id=<?= $catPlat->id ?>">
+            <img src="{{ asset('img/food/') }}{{ product.image }}" alt="background">
+            <div class="text text-white pt-2 px-3">
+                <p class="catplat_title mb-0"><?= $catPlat->libelle ?></p>
+                <p class="mb-0">{{ product.name }}</p>
+            </div>
+        </a>
+    </div>
+{% endfor %}
+</div>
+</div>
+{% endblock %}
